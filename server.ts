@@ -1,8 +1,8 @@
 import express from "express";
 import path from "path";
-import { createServer as createViteServer } from "vite";
 import { GoogleGenAI, Type } from "@google/genai";
 import dotenv from "dotenv";
+
 
 dotenv.config();
 
@@ -504,6 +504,7 @@ CMD ["streamlit", "run", "app.py", "--server.port=3000", "--server.address=0.0.0
 // Configure Vite or Static Fallback
 const startServer = async () => {
   if (process.env.NODE_ENV !== "production") {
+    const { createServer: createViteServer } = await import("vite");
     const vite = await createViteServer({
       server: { middlewareMode: true },
       appType: "spa",
