@@ -15,7 +15,7 @@ app.use(express.urlencoded({ limit: "25mb", extended: true }));
 
 // Check API key configuration on endpoint trigger rather than crashing on module load
 const getGeminiClient = () => {
-  const apiKey = process.env.GEMINI_API_KEY || "AIzaSyDZ_xVgs_uxyeFT0hijbI-B-afrtVLEMMc";
+  const apiKey = const googleApiKey = process.env.GOOGLE_API_KEY;
   if (!apiKey) {
     throw new Error("GEMINI_API_KEY is not configured in the server environment. Please define it in your AI Studio secrets panel.");
   }
