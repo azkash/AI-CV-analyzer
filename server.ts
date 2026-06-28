@@ -7,7 +7,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3001;
 
 // Increase JSON payload limits to support base64 uploads without limits
 app.use(express.json({ limit: "25mb" }));
@@ -15,7 +15,7 @@ app.use(express.urlencoded({ limit: "25mb", extended: true }));
 
 // Check API key configuration on endpoint trigger rather than crashing on module load
 const getGeminiClient = () => {
-  const apiKey = const googleApiKey = process.env.GOOGLE_API_KEY;
+  const apiKey = process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY;
   if (!apiKey) {
     throw new Error("GEMINI_API_KEY is not configured in the server environment. Please define it in your AI Studio secrets panel.");
   }
